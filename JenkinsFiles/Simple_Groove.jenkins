@@ -7,11 +7,11 @@ pipeline {
         label 'master'
     }
     options {
-        buildDiscarder(logRotator(NumKeepStr: '10', artifactsNumKeepStr: '10'))
+        buildDiscarder(logRotator(NumToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
     stages {
-        stage("Preparations") {
+        stage("First step") {
             steps {
                 sh 'ssh root@192.168.117.186 \'ip\''
             }
