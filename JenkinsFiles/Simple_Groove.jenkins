@@ -11,9 +11,9 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First Step") {
+        stage("Preparations") {
             steps {
-                sh 'ssh root@192.168.117.186' \'ip\''
+                sh 'ssh root@192.168.117.186' /'ip/''
             }
         }
     }
