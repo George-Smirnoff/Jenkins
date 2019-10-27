@@ -12,14 +12,32 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("Create doccker image") {
+        stage("Docker login") {
+            step {
+                echo '============== Docker login ============='
+                withCredentials([usernamePassword(credentialsId: 'Docker_Hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                    // the code in here can access $pass and $user
+                    sh """
+                    docker login -u $user -p $pass
+                    """
+                    }
+                }
+        }
+        stage("Create docker image") {
             steps {
                 echo  '============== Start the script ============='
                 dir ('docker/dockerfile'){
-                    sh 'docker build -t docker-tag:latest .'
+                    sh 'docker build -t smirnoff/docker-tag:latest .'
                 }
             }
         }
-
+        stage("Docker push") {
+            step {
+                echo  '============== Push docker image ============='
+                sh """
+                docker push smirnoff/docker-tag:latest
+                """
+            }
+        }
     }
 }
