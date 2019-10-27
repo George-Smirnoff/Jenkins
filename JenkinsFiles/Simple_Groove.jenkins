@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage("First step") {
             steps {
-                sh 'ssh root@192.168.117.186'
+                sh 'ssh root@192.168.117.186 \'ip a\''
                 echo  '\'ip a\''
             }
         }
