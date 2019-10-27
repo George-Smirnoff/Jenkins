@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo  '============== Start the script ============='
                 dir ('docker/dockerfile'){
-                    sh 'docker build .'
+                    sh 'docker build -t docker-toolbox:latest .'
                 }
             }
         }
