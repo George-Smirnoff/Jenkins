@@ -16,7 +16,11 @@ pipeline {
             steps {
                 echo  '============== Start the script ============='
                 dir ('docker/dockerfile'){
+<<<<<<< HEAD
                     sh 'docker build -t docker-toolbox:latest .'
+=======
+                    sh 'docker build -t docker-tag:latest .'
+>>>>>>> temp-branch
                 }
             }
         }
