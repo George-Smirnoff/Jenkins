@@ -6,7 +6,7 @@ pipeline {
     agent {
         label 'master'
     }
-    triggers { pollSCM ('H/6 * * * *') }
+    triggers { pollSCM ('H * * * *') }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
