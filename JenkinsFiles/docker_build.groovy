@@ -13,7 +13,7 @@ pipeline {
     }
     stages {
         stage("Docker login") {
-            step {
+            steps {
                 echo '============== Docker login ============='
                 withCredentials([usernamePassword(credentialsId: 'Docker_Hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     // the code in here can access $pass and $user
@@ -32,7 +32,7 @@ pipeline {
             }
         }
         stage("Docker push") {
-            step {
+            steps {
                 echo  '============== Push docker image ============='
                 sh """
                 docker push smirnoff/docker-tag:latest
