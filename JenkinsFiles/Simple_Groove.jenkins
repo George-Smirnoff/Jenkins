@@ -14,8 +14,15 @@ pipeline {
         stage("First step") {
             steps {
                 sh 'ssh root@192.168.117.186'
-                echo  '\'ip\''
+                echo  '\'ip a\''
             }
         }
+        stage("Second step") {
+            steps {
+                sh 'pwd'
+                sh 'whoami'
+            }
+        }
+
     }
 }
