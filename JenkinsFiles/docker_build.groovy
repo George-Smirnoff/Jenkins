@@ -19,12 +19,6 @@ pipeline {
                 }
             }
         }
-        stage("Second step") {
-            steps {
-                sh 'pwd'
-                sh 'whoami'
-            }
-        }
 
     }
 }
