@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    stages{
+        stage("A"){
+            steps{
+                echo "========executing A========"
+                //error "Execution failed"
+                script {
+                    currentBuild.result = "ABORTED"
+                }
+
+            }
+        }
+    }
+    post{
+        aborted{
+        //Only run the steps in post if the current Pipeline’s or stage’s run has an "aborted" status, usually due to the Pipeline being manually aborted. This is typically denoted by gray in the web UI.
+            echo "post => aborted is called"
+        }
+    }
+}

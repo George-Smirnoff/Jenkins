@@ -1,0 +1,16 @@
+pipeline{
+    agent {
+        node {
+            label "centos"
+            customWorkspace "/var/custom"
+        }
+    }
+    options { timestamps () }
+    stages{
+        stage("First"){
+            steps{
+                echo "======== Hello World ========"
+            }
+        }
+    }
+}

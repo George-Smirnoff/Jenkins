@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    stages{
+        stage("A"){
+            steps{
+                echo "========executing A========"
+                //error "Execution failed"
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+        cleanup{
+        //Run the steps in this post condition after every other post (running last one) condition has been evaluated, regardless of the Pipeline or stage’s status.
+            echo "post => cleanup is called"
+        }
+    }
+}

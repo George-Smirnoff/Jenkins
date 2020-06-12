@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    stages{
+        stage("A"){
+            steps{
+                echo "========executing A========"
+                //error "Execution failed"
+/*                 script {
+                    currentBuild.result = "UNSTABLE"
+                } */
+
+            }
+        }
+    }
+    post{
+        regression{
+        //Only run the steps in post if the current Pipeline’s or stage’s run’s status is failure, unstable, or aborted and the previous run was successful.        regression {
+            echo "post => regression is called"
+        }
+    }
+}

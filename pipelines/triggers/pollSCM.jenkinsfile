@@ -1,0 +1,25 @@
+/* 
+    Trigger the job if the new changes was applied on remote repository.
+    Make poll every minute!
+ */
+pipeline{
+    agent any
+    options { 
+        timestamps ()
+    }
+    triggers {
+        pollSCM("* * * * *")
+    }
+    stages{
+        stage("A"){
+            steps{
+                checkout([$class: 'GitSCM',
+                branches:[[name: "origin/master"]],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/George-Smirnoff/jenkins_triggers.git'
+                ]]
+                ])
+            }
+        }
+    }
+}

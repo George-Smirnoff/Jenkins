@@ -1,0 +1,23 @@
+pipeline{
+    agent {
+        docker {
+            image "ubuntu:latest"
+        }
+    }
+    options { 
+        timestamps ()
+        newContainerPerStage()
+    }
+    stages{
+        stage("A"){
+            steps{
+                sh 'cat /etc/lsb-release'
+            }
+        }
+        stage("B"){
+            steps{
+                sh 'cat /etc/lsb-release'
+            }
+        }
+    }
+}

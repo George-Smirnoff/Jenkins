@@ -1,0 +1,17 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { timestamps () }
+    stages{
+        stage("Build"){
+            steps{
+                timeout(time: 3, unit:"SECONDS") // Values: NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS
+                {
+                    echo "suspend"
+                    sleep 4
+                }
+            }
+        }
+    }
+}

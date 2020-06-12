@@ -1,0 +1,22 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { timestamps () }
+    stages{
+        stage("Build"){
+            steps{
+                    timeout(time: 10, unit:"SECONDS") // Values: NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS
+                    {
+                        echo "start timeout"
+                        retry(5) {
+                            sleep 2 
+                            error "error in retry"
+                        }
+                        echo "after retries"
+                    }
+                    echo "after timeout"
+            }
+        }
+    }
+}

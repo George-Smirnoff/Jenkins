@@ -1,0 +1,18 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { 
+        timestamps () 
+        retry(5)
+        }
+    stages{
+        stage("Build"){
+            steps{
+                echo "before throwing error"
+                error "error in retry"
+                echo "after retries"
+            }
+        }
+    }
+}

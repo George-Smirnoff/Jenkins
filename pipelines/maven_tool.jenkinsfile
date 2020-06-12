@@ -1,0 +1,16 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { timestamps () }
+    stages{
+        stage("Build"){
+            tools {
+                    maven "maven-tool"
+                }
+            steps {
+                sh "mvn --version"
+            }
+        }
+    }
+}

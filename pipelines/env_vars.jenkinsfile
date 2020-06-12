@@ -1,0 +1,37 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { 
+        timestamps () 
+        }
+    environment {
+        name1 = "John"
+        name2 = "Kai"
+    }
+    stages{
+        stage("A") {
+            environment {
+                name3 = "Lena"
+            }
+            steps {
+                echo "name1 = ${name1}"
+                echo "name2 = ${name2}"
+                echo "name3 = ${name3}"
+            }
+        }
+        stage("B") {
+            environment {
+                USER_NAME_PASSWORD = credentials('cd51e4c8-6427-40b8-a73a-6add4e8d0001')
+                TEST_SECRET = credentials('env-secret')
+            }
+            steps {
+                echo "FULL USER_NAME_PASSWORD = ${USER_NAME_PASSWORD}"
+                echo "USER_NAME_PASSWORD_USR = ${USER_NAME_PASSWORD_USR}"
+                echo "USER_NAME_PASSWORD_PSW = ${USER_NAME_PASSWORD_PSW}"
+                echo "TEST_SECRET = ${TEST_SECRET}"
+                sh "env"
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+/*
+the combination of conditons:
+            when {
+                beforeAgent true
+                environment name: "DEPLOY_TO", value: "PROD"
+            }
+affect the execution on agent when "beforeAgent true" and another condition 
+doesn't match. In this case the execution won't be done since env values different.
+*/
+
+pipeline{
+    agent any
+    options { 
+        timestamps () 
+        }
+    environment {
+        DEPLOY_TO = "DEV"
+    }
+    stages{
+        stage("A") {
+            agent {
+                label "centos"
+            }            
+            when {
+                beforeAgent true
+                environment name: "DEPLOY_TO", value: "PROD"
+            }
+            steps {
+                echo "Deploing to ${DEPLOY_TO}"
+            }
+        }
+    }
+}

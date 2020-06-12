@@ -1,0 +1,1 @@
+This options allow you to have the build for Pull-request state. You can apply the filter on when condition. Possible attributes are id, target, branch, fork, url, title, author, authorDisplayName, and authorEmail.

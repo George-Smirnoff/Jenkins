@@ -1,0 +1,23 @@
+pipeline{
+    agent {
+            label "centos"
+        }
+    options { 
+        timestamps () 
+        }
+    environment {
+        compare_name = "Jacky"
+    }
+    stages{
+        stage("A") {
+            when {
+                not {
+                    equals expected: "Jack", actual: compare_name
+                }
+            }
+            steps {
+                echo "The name ${compare_name}"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+pipeline{
+    agent none
+    options { 
+        timestamps () 
+        }
+    stages{
+        stage("Build") {
+            when {
+                buildingTag()
+            }
+            steps {
+                echo "We are running tagged branch"
+            }
+        }
+    }
+}

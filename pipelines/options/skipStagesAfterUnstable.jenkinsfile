@@ -1,0 +1,22 @@
+pipeline{
+    agent none
+    options { 
+        timestamps ()
+        skipStagesAfterUnstable()
+    }
+    stages{
+        stage("A"){
+            steps{
+                echo "======== Unstable stage ========"
+                script {
+                    currentBuild.result = "UNSTABLE"
+                }
+            }
+        }
+        stage("B"){
+            steps{
+                echo "======== Hello World ========"
+            }
+        }
+    }
+}

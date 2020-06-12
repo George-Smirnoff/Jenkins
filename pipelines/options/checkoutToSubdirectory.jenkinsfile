@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+    options { 
+        timestamps ()
+        checkoutToSubdirectory("someDir")
+    }
+    stages{
+        stage("A"){
+            steps{
+                echo "======== test.someDir ========"
+            }
+        }
+    }
+}
