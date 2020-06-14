@@ -1,0 +1,19 @@
+pipeline{
+    agent {
+        docker {
+            image "maven:3.6.3-openjdk-8-slim"
+            args "-e some_var=DEV"
+            alwaysPull true
+        }
+    }
+    options { 
+        timestamps ()
+    }
+    stages{
+        stage("A"){
+            steps{
+                sh 'echo $some_var'
+            }
+        }
+    }
+}
