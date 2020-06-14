@@ -1,0 +1,39 @@
+
+
+    pipeline{
+    agent {
+        label "master"
+    }
+    options { 
+        timestamps ()
+    }
+    stages{
+        stage("A"){
+            steps{
+                checkout([$class: 'GitSCM',
+                branches:[[name: "origin/master"]],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/George-Smirnoff/jenkins_dockerfile.git'
+                ]]
+                ])
+            }
+        }
+        stage("B"){
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.build'
+                    dir 'build'
+                    label 'master'
+                    additionalBuildArgs  '--tag version-1.5.1'
+                    args '-p 80:80'
+                }
+            }
+            steps {
+                sh '''
+                date
+                hostname
+                '''
+            }
+        }    
+    }
+}
