@@ -1,0 +1,18 @@
+node ("master"){
+    node("centos"){  // node first
+        stage ("Build") {
+            echo "this is scripted pipeline on centos"
+        }
+    }
+}
+
+
+// OR
+
+node ("master"){
+    stage ("Build") {  // stage first
+        node("centos"){
+            echo "this is scripted pipeline on centos server"
+        }
+    }
+}

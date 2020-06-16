@@ -1,0 +1,7 @@
+node {
+    stage ("Build") {
+        node {
+            echo "this is scripted pipeline"
+        }
+    }
+}

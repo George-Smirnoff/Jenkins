@@ -1,0 +1,8 @@
+node {
+    stage("Build") {
+        def mavenImage = docker.image("maven:3.6.3-openjdk-8-slim")
+        mavenImage.inside {
+            sh "mvn -v"
+        }
+    }
+}

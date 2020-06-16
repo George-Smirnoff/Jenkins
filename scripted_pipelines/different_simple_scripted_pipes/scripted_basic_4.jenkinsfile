@@ -1,0 +1,6 @@
+stage ("A") {
+    echo "this is scripted pipeline"
+}
+stage ("B") {
+    echo "this is scripted pipeline"
+}
