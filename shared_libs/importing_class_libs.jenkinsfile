@@ -1,0 +1,27 @@
+@Library("pipe-shared-libs") _
+/* 
+We can't use the dynamic version of library to import shared library,
+when we'll use the syntax below, the lib will be loaded only after the 
+script is compiled. 
+library ("pipe-shared-libs") _ 
+
+The script won't able to find type Car during compilation.
+*/
+import com.*;
+
+pipeline{
+    agent any
+    stages{
+        stage("A"){
+            steps{
+                script {
+                   def car = new acceleratedskillup.Car(this)
+                   car.numberOfDoors = 4
+                   car.brand = "Some_Brand"
+                   car.model = "Awesome_Model"
+                   car.printOutCar()
+                }
+            }
+        }
+    }
+}

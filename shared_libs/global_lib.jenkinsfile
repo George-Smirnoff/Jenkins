@@ -1,0 +1,22 @@
+// Use underscore to import a Global Variable from "vars" folder 
+@Library("pipe-shared-libs@dev") _
+//@Library("pipe-shared-libs", "second-pipe-shared-libs") _
+
+/* 
+Dynamic version of the library to import shared library
+library "pipe-shared-libs" _ 
+*/
+
+
+pipeline{
+    agent any
+    stages{
+        stage("A"){
+            steps{
+                script {
+                    swissknife.printName "Jack"
+                }
+            }
+        }
+    }
+}

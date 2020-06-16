@@ -1,0 +1,3 @@
+@Library("pipe-shared-libs") _
+
+execBuildOrDeploy("build")

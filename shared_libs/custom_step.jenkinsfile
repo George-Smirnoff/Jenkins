@@ -1,0 +1,17 @@
+@Library("pipe-shared-libs@dev") _
+
+pipeline{
+    agent {
+        label "centos"
+    }
+    stages{
+        stage("A"){
+            steps{
+                script {
+                   execMaven("--help")
+                   execMaven()
+                }
+            }
+        }
+    }
+}

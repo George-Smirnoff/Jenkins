@@ -1,0 +1,17 @@
+@Library("pipe-shared-libs") _
+
+pipeline{
+    agent {
+        label "centos"
+    }
+    stages{
+        stage("A"){
+            steps{
+                script{ 
+                    def request = libraryResource 'com/acceleratedskillup/request.json'
+                    println(request)
+                }
+            }
+        }
+    }
+}

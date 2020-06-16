@@ -1,0 +1,20 @@
+/* 
+Link ont git repo:
+https://github.com/George-Smirnoff/pipeline-shared-lib.git
+*/
+@Library("pipe-shared-libs") _
+
+pipeline{
+    agent {
+        label "centos"
+    }
+    stages{
+        stage("A"){
+            steps{
+                executeInScript({
+                    sh "printenv"
+                })
+            }
+        }
+    }
+}
